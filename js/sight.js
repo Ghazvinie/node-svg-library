@@ -1,5 +1,5 @@
 class SVGElement {
-    constructor(type){
+    constructor(type) {
         this.type = type;
         this.namespace = 'http://www.w3.org/2000/svg';
         this.node = document.createElementNS(this.namespace, this.type);
@@ -18,6 +18,14 @@ class SVGElement {
         parent.appendChild(this.node);
         return this;
     }
+}
 
+class Sight {
+    constructor(selector, width, height) {
+        this.svg = new SVGElement('svg').attr({ viewbox: `0 0 ${width} ${height}` }).append(selector);
+    }
 
+    draw (type, attrs) {
+        return new SVGElement(type).attr(attrs).append(this.svg);
+    }
 }
